@@ -13,6 +13,6 @@ class ClientsController < ApplicationController
   end
 
   def authenticate_client_params
-    params.require(:data).permit(:name, :password)
+    params.require(:data).permit(:name, :password)      
   end
 end

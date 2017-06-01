@@ -1,11 +1,11 @@
 class CoursesController < ApplicationController
   def create
-    create_course(create_course_params)
+    create_course(with_client(create_course_params))
     render_json(:created)
   end
 
   def index
-    search_course(search_courses_params)
+    search_course(with_client(search_courses_params))
     render_json
   end
 
@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def create_course_params
-    params.require(:data).permit(:title)
+    params.require(:data).permit(:title)      
   end
 
   def search_course(params)

@@ -3,7 +3,7 @@ class Spinach::Features::CreateCourse < Spinach::FeatureSteps
     create_course course_params
   end
 
-  step 'a new course is created' do
+  step 'a new course is created for the client' do
     expect(last_course.title).to eql(expected_title)
   end
 
@@ -11,7 +11,7 @@ class Spinach::Features::CreateCourse < Spinach::FeatureSteps
     create_course course_params_with_empty_title
   end
 
-  step 'no new course is created' do
+  step 'no new course is created for the client' do
     expect(total_course).to eql(0)
   end
 
@@ -38,7 +38,7 @@ class Spinach::Features::CreateCourse < Spinach::FeatureSteps
   end
 
   def total_course
-    Course.count
+    current_client.try(:courses).try(:count).to_i
   end
 
   def expected_title
@@ -46,6 +46,6 @@ class Spinach::Features::CreateCourse < Spinach::FeatureSteps
   end
 
   def last_course
-    @last_course ||= Course.last
+    @last_course ||= current_client.courses.last
   end
 end

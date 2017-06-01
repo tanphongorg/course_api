@@ -4,7 +4,7 @@ class Spinach::Features::SearchCourses < Spinach::FeatureSteps
   end
 
   step 'There are already some courses created' do
-    create_list(:course, 10)
+    create_list(:course, 10, client: current_client)
   end
 
   step 'I get correct courses result' do

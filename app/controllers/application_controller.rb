@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
 
   attr_reader :current_command, :current_query, :current_client
 
+  def with_client(params)
+    params.merge(current_client: current_client)
+  end
+
   def require_client
     @current_client = AuthorizeRequest.call(authorize_request_params).result
     render(json: { errors: I18n.t(:client_not_authorized) }, status: 401) unless current_client

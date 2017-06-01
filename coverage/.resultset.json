@@ -9,6 +9,8 @@
       "/Users/checkraiser/work/tanphong/course_api/app/models/client.rb": [
         1,
         1,
+        null,
+        1,
         null
       ],
       "/Users/checkraiser/work/tanphong/course_api/app/controllers/clients_controller.rb": [
@@ -38,6 +40,10 @@
         1,
         null,
         1,
+        null,
+        1,
+        4,
+        null,
         null,
         1,
         5,
@@ -203,9 +209,13 @@
         1,
         null,
         1,
+        1,
         null,
         1,
         2,
+        2,
+        null,
+        0,
         null,
         null,
         1,
@@ -217,11 +227,13 @@
       ],
       "/Users/checkraiser/work/tanphong/course_api/app/models/course.rb": [
         1,
+        1,
         null
       ],
       "/Users/checkraiser/work/tanphong/course_api/app/queries/search_course.rb": [
         1,
         1,
+        2,
         2,
         2,
         null,
@@ -274,6 +286,6 @@
         0
       ]
     },
-    "timestamp": 1496287421
+    "timestamp": 1496291980
   }
 }

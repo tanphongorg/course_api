@@ -1,4 +1,7 @@
-select * from courses
-<% if @q.present? %>
-where title like <%= quote "#{@q}%" %>
+<% if @current_client.present? %>
+  select * from courses
+  where client_id = <%= @current_client.id %>
+  <% if @q.present? %>
+    and title like <%= quote "#{@q}%" %>
+  <% end %>
 <% end %>

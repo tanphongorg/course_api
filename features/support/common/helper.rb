@@ -14,6 +14,10 @@ module Common
       create(:client)
     end
 
+    def current_client
+      @current_client
+    end
+
     def json_body
       last_response.body
     end

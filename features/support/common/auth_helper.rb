@@ -9,6 +9,7 @@ module Common
     step 'I authenticate' do
       post authenticate_clients_url, authenticate_client_params
       header 'Authorization', jwt_token
+      @current_client = @client
     end
 
     private
@@ -20,11 +21,7 @@ module Common
           password: @client.password
         }
       }
-    end
-
-    def current_client
-      @client
-    end
+    end    
 
     def jwt_token
       parsed_body.fetch(:data)
