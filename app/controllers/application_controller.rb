@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
         render json: current_command, status: failed_status
       end
     elsif current_query
-      render json: {}
+      render json: { data: current_query }, status: success_status
     else
       head 204
     end

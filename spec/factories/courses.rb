@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :course do
-    title "MyString"
+    sequence(:title) { |n| "course_#{n}" }
   end
 end

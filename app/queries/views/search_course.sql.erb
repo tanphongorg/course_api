@@ -1,0 +1,4 @@
+select * from courses
+<% if @q.present? %>
+where title like <%= quote "#{@q}%" %>
+<% end %>
