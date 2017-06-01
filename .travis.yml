@@ -1,0 +1,21 @@
+sudo: required
+services:
+- docker
+rvm: false
+ruby: false
+bundle: false
+gem: false
+install:
+- cp config/database.travis.yml config/database.yml
+- docker pull postgres:9.6
+- docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+- docker build -t tanphongorg/course_api .
+- docker run --name backend --link some-postgres:postgres -e RAILS_ENV=test -d tanphongorg/course_api
+before_script: true
+script:
+- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:create'
+- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:migrate --trace'
+- docker exec backend bash -c 'bin/rails db:test:prepare'
+- docker exec backend bash -c 'bin/rails test'
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker push tanphongorg/course_api
