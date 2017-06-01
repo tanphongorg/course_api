@@ -38,15 +38,15 @@ group :development, :test do
   gem 'spinach', github: 'codegram/spinach'
   gem 'spinach-rails'
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
   gem 'pry-byebug'
   gem 'simplecov', require: false
 end
 
 group :test do 
   gem 'database_cleaner'
-  gem 'rspec'
   gem 'rack-test'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do

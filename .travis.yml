@@ -5,16 +5,19 @@ rvm: false
 ruby: false
 bundle: false
 gem: false
+env:
+  DOCKER_COMPOSE_VERSION: 1.4.2
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 install:
 - cp config/database.travis.yml config/database.yml
-- docker pull postgres:9.6
-- docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-- docker build -t tanphongorg/course_api .
-- docker run --name backend --link some-postgres:postgres -e RAILS_ENV=test -d tanphongorg/course_api
+- docker-compose up
 before_script: true
 script:
-- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:create'
-- docker exec backend bash -c 'RAILS_ENV=test bin/rails db:migrate --trace'
-- docker exec backend bash -c 'bin/rails db:test:prepare'
-- docker exec backend bash -c 'bundle exec spinach'
-- docker exec backend bash -c 'bundle exec rspec'
+- docker-compose exec api bin/rails db:create
+- docker-compose exec api bin/rails db:migrate
+- docker-compose exec api bundle exec spinach
+- docker-compose exec api bin/rspec

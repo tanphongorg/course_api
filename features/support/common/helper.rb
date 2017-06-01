@@ -7,7 +7,7 @@ module Common
   module Helper
     include Common::AuthHelper
     include Common::ErrorsHelper
-    include Common::ResponseHelper    
+    include Common::ResponseHelper        
     #include Common::UsersHelper
 
     def create_client
@@ -16,6 +16,13 @@ module Common
 
     def current_client
       @current_client
+    end
+
+    def producer
+      return @producer if @producer
+      @producer = double('$kafka_producer')
+      allow_any_instance_of(ApplicationController).to receive(:producer).and_return(@producer)
+      @producer
     end
 
     def json_body

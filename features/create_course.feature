@@ -3,7 +3,8 @@ Feature: Create Course
 
   Scenario: Success
     Given I'm a client
-    And I authenticate
+    And I authenticate    
+    And a course_created event will be produced
     When I request to create a course
     Then response is 201 Created
     And a new course is created for the client

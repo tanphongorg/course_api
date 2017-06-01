@@ -17,7 +17,8 @@ class CreateCourse < ApplicationCommand
   end
 
   def call
-    course = current_client.courses.create! title: title if valid?
+    return nil unless valid?
+    course = current_client.courses.create! title: title 
     producer.produce(course.to_json, topic: "course_created")
     course
   rescue => e

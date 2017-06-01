@@ -7,6 +7,10 @@ class Spinach::Features::CreateCourse < Spinach::FeatureSteps
     expect(last_course.title).to eql(expected_title)
   end
 
+  step 'a course_created event will be produced' do
+    expect(producer).to receive(:produce).with(anything, topic: "course_created")
+  end
+
   step 'I request to create a course with empty title' do
     create_course course_params_with_empty_title
   end

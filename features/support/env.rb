@@ -8,6 +8,8 @@ Dir[Rails.root.join('features/support/common/**/*.rb')].each { |f| require f }
 require 'rspec'
 require 'rack/test'
 require 'database_cleaner'
+require 'spinach/rspec/mocks'
+
 DatabaseCleaner.strategy = :truncation
 #
 Spinach.hooks.before_scenario{ DatabaseCleaner.clean }

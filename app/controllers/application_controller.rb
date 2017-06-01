@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def with_producer(params)
-    params.merge(producer: $kafka_producer)
+    params.merge(producer: producer)
   end
 
   def require_client
@@ -30,6 +30,10 @@ class ApplicationController < ActionController::API
     else
       head 204
     end
+  end
+
+  def producer
+    $kafka_producer
   end
 
   def authorize_request_params
