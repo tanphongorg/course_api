@@ -15,7 +15,7 @@ before_install:
 install: true
 before_script: true
 script:
-- docker-compose up
+- docker-compose up -d
 - docker-compose exec api bin/rails db:create
 - docker-compose exec api bin/rails db:migrate
 - docker-compose exec api bundle exec spinach
