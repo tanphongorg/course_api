@@ -19,4 +19,4 @@ script:
 - docker-compose exec api bin/rails db:create
 - docker-compose exec api bin/rails db:migrate
 - docker-compose exec api bundle exec spinach
-- docker-compose exec api bin/rspec
+- docker-compose exec api bundle exec rspec
