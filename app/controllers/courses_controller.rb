@@ -1,11 +1,11 @@
 class CoursesController < ApplicationController
   def create
-    create_course(with_client(create_course_params))
+    create_course(with_producer(with_client(create_course_params)))
     render_json(:created)
   end
 
   def index
-    search_course(with_client(search_courses_params))
+    search_course(with_producer(with_client(search_courses_params)))
     render_json
   end
 
